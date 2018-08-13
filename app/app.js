@@ -8,6 +8,7 @@ require('dotenv').config();
  */
 const express = require('express');
 const app = express();
+const path = require('path');  
 const morgan = require('morgan');
 const BodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -39,6 +40,20 @@ mongoose.connection.on('connected', () => {
  * Debug
  */
 app.use(morgan('dev'));
+
+/**
+ * STATIC
+ */
+app.use('/img',express.static(path.join(__dirname, 'public/img')));
+app.use('/js',express.static(path.join(__dirname, 'public/js')));
+app.use('/css',express.static(path.join(__dirname, 'public/css')));
+
+/**
+ * INDEX
+ */
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+}); 
 
 /**
  * Parse JSON
@@ -77,6 +92,7 @@ app.use((req, res, next) => {
     error.status = 404;
     next(error);
 });
+
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({

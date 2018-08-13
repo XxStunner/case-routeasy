@@ -6,7 +6,7 @@ const Delivery = require('../../db/models/Delivery');
  * Get all deliveries in database.
  */
 router.get('/', (req, res, next) => {
-    Deliver.find()
+    Delivery.find()
     .exec()
     .then(doc => {
         res.status(200).json(doc);
