@@ -16,9 +16,9 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
     <section class="main-section" ng-controller="main-controller">
-        <div class="container main-container">
-            <div class="row">
-                <div class="col-4">
+        <div class="container-fluid main-container">
+            <div class="row justify-content-center">
+                <div class="col-3">
                     <div class="clients-form-w default-padding">
                         <form name="clients_form" class="clients-form colored-wrapper" ng-submit="submit()">
                             <div class="form-group row">
@@ -54,15 +54,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                     <div class="clients-w default-padding">
                         <div id="clients_map" class="clients-map"></div>
                         <div class="clients-info">
-                            <p>Total de Clientes: {{ deliveries.length }}; Peso Total: {{ total_size }}kg; Ticket Médio*: {{ medium_ticket }}</p>
+                            <p>Total de Clientes: {{ deliveries.length }}; Peso Total: {{ total_size }}kg; Ticket Médio*: {{ (total_size / deliveries.length).toFixed(1) }}</p>
                         </div>
                         <div class="clients-list">
                             <table class="table table-striped table-rt">
-                                <thead>
+                                <thead class="text-center">
                                     <tr>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Rua</th>
@@ -87,7 +87,7 @@
                             </table>
                         </div>
                         <div class="clients-obs">
-                            <p>*Peso Total / Total de Clientes</p>
+                            <p>*Peso Total/Total de Clientes</p>
                         </div>
                     </div>
                 </div>
