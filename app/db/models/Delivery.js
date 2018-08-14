@@ -6,10 +6,9 @@ const DeliverySchema = mongoose.Schema({
     client_name: String,
     size: String,
     address: {
+        full: String,
         street_name: String,
-        number: Number,
         neighborhood: String,
-        complement: String,
         city: String,
         state: String,
         country: String,

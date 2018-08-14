@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Delivery = require('../../db/models/Delivery');
+const mongoose = require('mongoose');
+
 
 /**
  * Get all deliveries in database.
@@ -21,16 +23,15 @@ router.post('/', (req, res, next) => {
         client_name: req.body.client_name,
         size: req.body.size,
         address: {
-            street_name: req.body.street_name,
-            number: req.body.street_name,
-            neighborhood: req.body.neighborhood,
-            complement: req.body.complement,
-            city: req.body.city,
-            state: req.body.state,
-            country: req.body.country,
+            full_name: req.body.address.full_name,
+            street_name: req.body.address.street_name,
+            neighborhood: req.body.address.neighborhood,
+            city: req.body.address.city,
+            state: req.body.address.state,
+            country: req.body.address.country,
             location: {
-                lat: req.body.lat,
-                lng: req.body.lng
+                lat: req.body.address.location.lat,
+                lng: req.body.address.location.lng
             },
         },
         updated_at: new Date(),
@@ -54,19 +55,19 @@ router.post('/', (req, res, next) => {
 });
 
 /**
- * Delete the delivery from database.
+ * Delete all deliveries
  */
-router.delete('/:delivery', (req, res, next) => {
-    Delivery.deleteOne({_id: req.params.delivery}, (err) => {
+router.delete('/', (req, res, next) => {
+    Delivery.remove({}, (err) => {
         let status = 200;
         let response = {
             "success": true,
-            "message": "Deleted with success!"
+            "message": "Entradas deletadas com sucesso!"
         };
         if (err) {
             status = 400;
             respose.success = false;
-            response.message = `Falha ao deletar entrada no banco de dados: ${err}`; 
+            response.message = `Falha ao deletar entradas do banco de dados: ${err}`; 
         }
         res.status(status).json(response);
     });

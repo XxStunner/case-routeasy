@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="clients-form-w default-padding">
-                        <form name="clients_form" class="clients-form colored-wrapper" ng-submit="submit">
+                        <form name="clients_form" class="clients-form colored-wrapper" ng-submit="submit()">
                             <div class="form-group row">
                                 <div class="col-12">
                                     <input type="text" class="form-control" ng-model="new_delivery.client_name" name="client_name" placeholder="Nome cliente" required>
@@ -33,16 +33,16 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <input type="text" class="form-control" ng-model="new_delivery.address.street_name" name="street_name" placeholder="Endereço Cliente" required>
-                                    <a class="search-address" ng-click="search(new_delivery.address.street_name)">BUSCAR</a>
+                                    <input type="text" class="form-control" ng-model="new_delivery.address.full_name" name="full_name" placeholder="Endereço Cliente" required>
+                                    <a class="search-address" ng-click="search(new_delivery.address.full_name)">BUSCAR</a>
                                 </div>
                             </div>
                             <div class="form-group row multiple-inputs-g">
                                 <div class="col-6">
-                                    <input type="text" class="form-control" ng-model="new_delivery.location.lat" name="lat" placeholder="Latitude" disabled required>
+                                    <input type="text" class="form-control" ng-model="new_delivery.address.location.lat" name="lat" placeholder="Latitude" disabled required>
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" ng-model="new_delivery.location.lng" name="lng" placeholder="Longitude" disabled required>
+                                    <input type="text" class="form-control" ng-model="new_delivery.address.location.lng" name="lng" placeholder="Longitude" disabled required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -50,7 +50,7 @@
                             </div>
                         </form>
                         <div class="form-reset-w colored-wrapper">
-                            <button type="submit" class="btn btn-danger btn-block">Resetar Cadastro</button>
+                            <button ng-click="reset()" type="button" class="btn btn-danger btn-block">Resetar Cadastro</button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                                         <td>{{ delivery.client_name }}</td>
                                         <td>{{ delivery.address.street_name }}</td>
                                         <td>{{ delivery.address.city }}</td>
-                                        <td>{{ delivery.address.state }}</td>
+                                        <td>{{ delivery.address.country }}</td>
                                         <td>{{ delivery.size }}</td>
                                         <td>{{ delivery.address.location.lat }}</td>
                                         <td>{{ delivery.address.location.lng }}</td>
