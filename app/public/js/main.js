@@ -39,7 +39,7 @@
         $scope.deliveries = [];
 
         $scope.total_size = 0;
-        $scope.medium_ticket = 0;
+        $scope.medium_ticket = () => $scope.deliveries.length > 0 ? (total_size / deliveries.length).toFixed(1) : 0;
 
         /**
          * Get Deliveries.
